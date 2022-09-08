@@ -18,3 +18,11 @@ stages:
           vmImage: ubuntu-latest
         steps:
           - script: echo Executando o stage de Build
+  - stage: Desenv
+    displayName: Desenvolvedor
+    jobs:
+      - job: Desenv
+        pool:
+          vmImage: ubuntu-latest
+        steps:
+          - script: echo Executando o stage de Desenv
