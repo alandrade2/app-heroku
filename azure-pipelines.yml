@@ -11,7 +11,7 @@ pool:
 
 stages:
   - stage: Build
-    displayName: Build
+    displayName: Stage 1 - Build
     jobs:
       - job: Build
         pool:
@@ -20,7 +20,7 @@ stages:
           - script: echo Executando o stage de Build
   - stage: Desenv
     dependsOn: [ Build ]
-    displayName: Desenvolvedor
+    displayName:  Stage 2 - Desenv
     jobs:
       - job: Desenv
         pool:
@@ -29,7 +29,7 @@ stages:
           - script: echo Executando o stage de Desenv
   - stage: Homolog
     dependsOn: [ Desenv ]
-    displayName: Homolog
+    displayName:  Stage 3 - Homolog
     jobs:
       - job: Homolog
         pool:
@@ -38,7 +38,7 @@ stages:
           - script: echo Executando o stage de Homologação
   - stage: Testes
     dependsOn: [ Desenv ]
-    displayName: Testes
+    displayName:  Stage 5 - Testes
     jobs:
       - job: Testes
         pool:
@@ -49,7 +49,7 @@ stages:
     dependsOn: 
       - Homolog
       - Testes
-    displayName: Prod
+    displayName:  Stage 4 - Produção
     jobs:
       - job: Prod
         pool:
