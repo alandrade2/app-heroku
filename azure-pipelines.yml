@@ -47,7 +47,8 @@ stages:
           - script: echo Executando o stage de Testes
   - stage: Prod
     dependsOn: 
-      
+      - Homolog
+      - Testes
     displayName: Prod
     jobs:
       - job: Prod
