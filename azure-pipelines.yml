@@ -19,6 +19,7 @@ stages:
         steps:
           - script: echo Executando o stage de Build
   - stage: Desenv
+    dependsOn: [ Build ]
     displayName: Desenvolvedor
     jobs:
       - job: Desenv
@@ -26,3 +27,31 @@ stages:
           vmImage: ubuntu-latest
         steps:
           - script: echo Executando o stage de Desenv
+  - stage: Homolog
+    dependsOn: [ Desenv ]
+    displayName: Homolog
+    jobs:
+      - job: Homolog
+        pool:
+          vmImage: ubuntu-latest
+        steps:
+          - script: echo Executando o stage de Homologação
+  - stage: Testes
+    dependsOn: [ Desenv ]
+    displayName: Testes
+    jobs:
+      - job: Testes
+        pool:
+          vmImage: ubuntu-latest
+        steps:
+          - script: echo Executando o stage de Testes
+  - stage: Prod
+    dependsOn: 
+      
+    displayName: Prod
+    jobs:
+      - job: Prod
+        pool:
+          vmImage: ubuntu-latest
+        steps:
+          - script: echo Executando o stage de Produção
